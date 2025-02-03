@@ -22,15 +22,19 @@
             <form action="signin.html">
                 <label for="email">이메일</label>
                 <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요">
+                <span id="error-message-login" class="invisible"></span>
 
                 <label for="nickname">닉네임</label>
                 <input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요">
+                <span id="error-message-nickname" class="invisible"></span>
 
                 <label for="password">비밀번호</label>
                 <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
+                <span id="error-message-password" class="invisible"></span>
 
                 <label for="password-confirm">비밀번호 확인</label>
                 <input type="password" name="password-confirm" id="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                <span id="error-message-password-confirm" class="invisible"></span>
 
                 <input type="submit" id="submit" value="회원가입">
             </form>

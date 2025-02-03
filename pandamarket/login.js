@@ -3,69 +3,41 @@ const password = document.querySelector('#password');
 const form = document.querySelector('form');
 
 email.addEventListener('blur', () => {
-    const focusout = email.value.trim();
+    const emailValue = email.value.trim();
     const errorMessageLogin = document.querySelector('#error-message-login');
     console.log(errorMessageLogin);
 
-    if (focusout.includes('@')) {
-        errorMessageLogin.remove();
-    } else if (focusout === '' || focusout === null || focusout === undefined) {
-        if (errorMessageLogin !== null && !focusout.includes('@')) {
-            errorMessageLogin.remove();
-        }
+    if (emailValue.includes('@')) {
+        errorMessageLogin.classList.add('invisible');
+        email.classList.remove('error');
+    } else if (emailValue === '' || emailValue === null || emailValue === undefined) {
+        errorMessageLogin.classList.remove('invisible');
         email.classList.add('error');
-        const emptySpan = document.createElement('span');
-        emptySpan.id = 'error-message-login';
-        emptySpan.textContent = '이메일을 입력해주세요.';
-        if (!document.querySelector('#error-message-login')) {
-            email.after(emptySpan);
-        }
+        errorMessageLogin.textContent = '이메일을 입력해주세요.';
     }
-    else if (focusout !== '' && !focusout.includes('@')) {
-        if (errorMessageLogin !== null) {
-            errorMessageLogin.remove();
-        }
+    else if (emailValue !== '' && !emailValue.includes('@')) {
+        errorMessageLogin.classList.remove('invisible');
         email.classList.add('error');
-        const errorSpan = document.createElement('span');
-        errorSpan.id = 'error-message-login';
-        errorSpan.textContent = '잘못된 이메일입니다.'
-        if (!document.querySelector('#error-message-login')) {
-            email.after(errorSpan);
-        }
-
+        errorMessageLogin.textContent = '잘못된 이메일 형식입니다.'
     }
 })
 
 password.addEventListener('blur', () => {
-    const focusout = password.value.trim();
+    const passwordValue = password.value.trim();
     const errorMessagePassword = document.querySelector('#error-message-password');
 
-    if (focusout.length >= 8) {
+    if (passwordValue.length >= 8) {
+        errorMessagePassword.classList.add('invisible');
         password.classList.remove('error');
-        errorMessagePassword.remove();
-    } else if (focusout === '' || focusout === null || focusout === undefined) {
-        if (errorMessagePassword !== null) {
-            errorMessagePassword.remove();
-        }
+    } else if (passwordValue === '' || passwordValue === null || passwordValue === undefined) {
         password.classList.add('error');
-        const emptySpan = document.createElement('span');
-        emptySpan.id = 'error-message-password';
-        emptySpan.textContent = '비밀번호를 입력해주세요.'
-        if (!document.querySelector('#error-message-password')) {
-            password.after(emptySpan);
-        }
+        errorMessagePassword.classList.remove('invisible');
+        errorMessagePassword.textContent = '비밀번호를 입력해주세요.';
     }
     else {
-        if (errorMessagePassword !== null) {
-            errorMessagePassword.remove();
-        }
         password.classList.add('error');
-        const errorSpan = document.createElement('span');
-        errorSpan.id = 'error-message-password';
-        errorSpan.textContent = '비밀번호를 8자 이상 입력해주세요'
-        if (!document.querySelector('#error-message-password')) {
-            password.after(errorSpan);
-        }
+        errorMessagePassword.classList.remove('invisible');
+        errorMessagePassword.textContent = '비밀번호를 8자 이상 입력해주세요.';
     }
 })
 
